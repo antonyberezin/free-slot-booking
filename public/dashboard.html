@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Free Slot - SlotFinder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="inner">
+  <nav id="nav"></nav>
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Find a Free Slot</h1>
+        <p>Live occupancy and free-slot search</p>
+      </div>
+      <button class="btn btn-sm btn-outline" id="refreshBtn">↻ Refresh</button>
+    </div>
+
+    <!-- Live stats -->
+    <div class="grid grid-4 mt" id="stats">
+      <div class="card stat"><div class="s-ico">🅿️</div><div><span class="label">Total slots</span><span class="value" id="sTotal">-</span></div></div>
+      <div class="card stat free"><div class="s-ico">✅</div><div><span class="label">Free now</span><span class="value" id="sFree">-</span></div></div>
+      <div class="card stat busy"><div class="s-ico">🚗</div><div><span class="label">Occupied now</span><span class="value" id="sBusy">-</span></div></div>
+      <div class="card stat rate"><div class="s-ico">📊</div><div><span class="label">Occupancy</span><span class="value" id="sRate">-</span></div></div>
+    </div>
+
+    <div class="grid grid-2 mt">
+      <!-- Search form -->
+      <div class="card">
+        <div class="card-title"><div class="ico g">🔍</div><h3>Search free slots</h3></div>
+        <p class="mb">Choose vehicle type and the time you need</p>
+        <form id="searchForm" novalidate>
+          <div class="field">
+            <label for="vehicleType">Vehicle type <span class="req">*</span></label>
+            <select id="vehicleType" name="vehicleType">
+              <option value="">-- Select --</option>
+              <option value="car">🚗 Car</option>
+              <option value="bike">🏍️ Bike</option>
+              <option value="ev">⚡ EV</option>
+              <option value="truck">🚚 Truck</option>
+            </select>
+            <span class="error"></span>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="startTime">From <span class="req">*</span></label>
+              <input id="startTime" name="startTime" type="datetime-local" />
+              <span class="error"></span>
+            </div>
+            <div class="field">
+              <label for="endTime">To <span class="req">*</span></label>
+              <input id="endTime" name="endTime" type="datetime-local" />
+              <span class="error"></span>
+            </div>
+          </div>
+          <p class="hint muted mb" id="durationHint">Min 30 minutes · Max 24 hours · Up to 30 days ahead</p>
+          <button class="btn btn-green btn-block btn-lg" type="submit" id="searchBtn">🔍 Find Free Slots</button>
+        </form>
+      </div>
+
+      <!-- Live map -->
+      <div class="card">
+        <div class="card-title"><div class="ico">🚦</div><h3>Live slot map</h3></div>
+        <div class="legend mt">
+          <span><i style="background:#86efac"></i>Free</span>
+          <span><i style="background:#fca5a5"></i>Occupied</span>
+          <span><i style="background:#cbd5e1"></i>Inactive</span>
+        </div>
+        <div class="slot-map" id="slotMap"><div class="loader"></div></div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="card mt" id="resultsCard" style="display:none">
+      <div class="result-head">
+        <h3 id="resultTitle">Free slots</h3>
+        <span id="resultBadge"></span>
+      </div>
+      <div id="results"></div>
+    </div>
+  </main>
+
+  <!-- Booking modal -->
+  <div class="modal" id="bookModal">
+    <div class="card" id="bookCard">
+      <div class="modal-head">
+        <h3 id="bookTitle">Confirm booking</h3>
+        <button class="close" id="closeModal" aria-label="Close">&times;</button>
+      </div>
+      <div id="bookStep">
+      <div class="summary" id="bookSummary"></div>
+      <div class="alert alert-error" id="bookAlert"></div>
+      <form id="bookForm" novalidate>
+        <div class="field">
+          <label for="vehicleNumber">Vehicle number <span class="req">*</span></label>
+          <input id="vehicleNumber" name="vehicleNumber" maxlength="13" placeholder="TN01AB1234" style="text-transform:uppercase" />
+          <span class="hint">State code + district + series + 4 digits</span>
+          <span class="error"></span>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" name="agree" style="width:auto" /> I agree to vacate the slot on time</label>
+          <span class="error"></span>
+        </div>
+        <button class="btn btn-block" type="submit" id="bookBtn">Confirm Booking</button>
+      </form>
+      </div>
+
+      <!-- Shown after the server confirms the booking -->
+      <div id="bookSuccess" class="book-success" hidden>
+        <div class="bay-anim" aria-hidden="true">
+          <span class="bay-id" id="okBay"></span>
+          <svg class="bay-car" viewBox="0 0 72 136">
+            <rect x="4" y="2" width="64" height="132" rx="20" fill="#22c55e"/>
+            <path d="M14 36 Q36 22 58 36 L54 56 Q36 50 18 56 Z" fill="#0f172a" opacity=".85"/>
+            <path d="M18 100 Q36 106 54 100 L58 116 Q36 126 14 116 Z" fill="#0f172a" opacity=".8"/>
+            <rect x="10" y="3" width="14" height="6" rx="3" fill="#fef9c3"/><rect x="48" y="3" width="14" height="6" rx="3" fill="#fef9c3"/>
+          </svg>
+          <span class="bay-check">✓</span>
+        </div>
+        <h3 id="okTitle"></h3>
+        <div class="summary" id="okSummary"></div>
+        <button class="btn btn-green btn-block" type="button" id="okDone">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <span class="brand"><span class="logo">P</span> SlotFinder</span>
+      <span>© 2026 · Free Slot Identification in Vehicle Booking Systems</span>
+    </div>
+  </footer>
+  <script src="js/api.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/anim.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings - SlotFinder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="inner">
+  <nav id="nav"></nav>
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>My Bookings</h1>
+        <p>View and cancel your slot bookings</p>
+      </div>
+      <a href="dashboard.html" class="btn btn-sm">+ New booking</a>
+    </div>
+
+    <div class="card mt">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-f="all">All</button>
+        <button class="tab" data-f="upcoming">Upcoming</button>
+        <button class="tab" data-f="active">Active now</button>
+        <button class="tab" data-f="completed">Completed</button>
+        <button class="tab" data-f="cancelled">Cancelled</button>
+      </div>
+      <div class="table-wrap" id="list"><div class="loader"></div></div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span class="brand"><span class="logo">P</span> SlotFinder</span>
+      <span>© 2026 · Free Slot Identification in Vehicle Booking Systems</span>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+    Auth.require();
+    renderNav('bookings.html');
+    let bookings = [];
+    let filter = 'all';
+
+    // Derived status shown to user
+    function statusOf(b) {
+      if (b.status === 'cancelled') return 'cancelled';
+      const now = new Date();
+      if (new Date(b.endTime) <= now) return 'completed';
+      if (new Date(b.startTime) <= now) return 'active';
+      return 'upcoming';
+    }
+    const badge = { upcoming: 'badge-blue', active: 'badge-green', completed: 'badge-grey', cancelled: 'badge-red' };
+
+    function render() {
+      const list = document.getElementById('list');
+      const rows = bookings.filter((b) => filter === 'all' || statusOf(b) === filter);
+      if (!rows.length) {
+        list.innerHTML = '<p class="empty">No bookings here. <a href="dashboard.html">Find a free slot</a></p>';
+        return;
+      }
+      list.innerHTML = `<table>
+        <thead><tr><th>Slot</th><th>Vehicle</th><th>From</th><th>To</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+        <tbody>${rows.map((b) => {
+          const st = statusOf(b);
+          return `<tr>
+            <td><b>${escapeHtml(b.slot?.slotNumber || 'Deleted')}</b></td>
+            <td>${fmt.icon(b.vehicleType)} ${escapeHtml(b.vehicleNumber)}</td>
+            <td>${fmt.dateTime(b.startTime)}</td>
+            <td>${fmt.dateTime(b.endTime)}</td>
+            <td>${fmt.money(b.amount)}</td>
+            <td><span class="badge ${badge[st]}">${st}</span></td>
+            <td>${st === 'upcoming' || st === 'active'
+              ? `<button class="btn btn-sm btn-danger" data-id="${b._id}">Cancel</button>` : ''}</td>
+          </tr>`;
+        }).join('')}</tbody></table>`;
+
+      list.querySelectorAll('button[data-id]').forEach((btn) => {
+        btn.onclick = async () => {
+          if (!confirm('Cancel this booking? The slot will become free for others.')) return;
+          btn.disabled = true;
+          try {
+            const r = await api(`/bookings/${btn.dataset.id}/cancel`, { method: 'PATCH' });
+            toast(r.message);
+            const row = btn.closest('tr');
+            if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+              row.classList.add('row-out');
+              await new Promise((res) => setTimeout(res, 350));
+            }
+            load();
+          } catch (err) {
+            toast(err.message, 'error');
+            btn.disabled = false;
+          }
+        };
+      });
+    }
+
+    async function load() {
+      try {
+        bookings = await api('/bookings/mine');
+        render();
+      } catch (err) {
+        document.getElementById('list').innerHTML = `<p class="empty">${escapeHtml(err.message)}</p>`;
+      }
+    }
+
+    document.querySelectorAll('.tab').forEach((t) => {
+      t.onclick = () => {
+        document.querySelectorAll('.tab').forEach((x) => x.classList.remove('active'));
+        t.classList.add('active');
+        filter = t.dataset.f;
+        render();
+      };
+    });
+    load();
+  </script>
+  <script src="js/anim.js"></script>
+</body>
+</html>

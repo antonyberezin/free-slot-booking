@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - SlotFinder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="inner">
+  <nav id="nav"></nav>
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Admin Panel</h1>
+        <p>Manage parking slots and monitor bookings</p>
+      </div>
+    </div>
+
+    <div class="grid grid-4 mt">
+      <div class="card stat"><div class="s-ico">📋</div><div><span class="label">Total bookings</span><span class="value" id="stTotal">-</span></div></div>
+      <div class="card stat free"><div class="s-ico">✅</div><div><span class="label">Active / upcoming</span><span class="value" id="stActive">-</span></div></div>
+      <div class="card stat busy"><div class="s-ico">✖️</div><div><span class="label">Cancelled</span><span class="value" id="stCancelled">-</span></div></div>
+      <div class="card stat rate"><div class="s-ico">💰</div><div><span class="label">Revenue</span><span class="value" id="stRevenue">-</span></div></div>
+    </div>
+
+    <div class="grid admin-grid mt">
+      <div class="card">
+        <div class="card-title"><div class="ico g">➕</div><h3 id="formTitle">Add new slot</h3></div>
+        <div class="alert alert-error mt" id="slotAlert"></div>
+        <form id="slotForm" novalidate class="mt">
+          <input type="hidden" name="id" />
+          <div class="form-row">
+            <div class="field">
+              <label for="slotNumber">Slot number <span class="req">*</span></label>
+              <input id="slotNumber" name="slotNumber" placeholder="A-07" maxlength="5" style="text-transform:uppercase" />
+              <span class="error"></span>
+            </div>
+            <div class="field">
+              <label for="vehicleType">Vehicle type <span class="req">*</span></label>
+              <select id="vehicleType" name="vehicleType">
+                <option value="">-- Select --</option>
+                <option value="car">Car</option>
+                <option value="bike">Bike</option>
+                <option value="ev">EV</option>
+                <option value="truck">Truck</option>
+              </select>
+              <span class="error"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="floor">Floor <span class="req">*</span></label>
+              <input id="floor" name="floor" type="number" min="0" max="10" step="1" placeholder="0" />
+              <span class="error"></span>
+            </div>
+            <div class="field">
+              <label for="pricePerHour">Price / hour (₹) <span class="req">*</span></label>
+              <input id="pricePerHour" name="pricePerHour" type="number" min="1" max="1000" placeholder="40" />
+              <span class="error"></span>
+            </div>
+          </div>
+          <div class="field">
+            <label><input type="checkbox" name="isActive" checked style="width:auto" /> Slot is active (bookable)</label>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn" type="submit" id="saveBtn">Add Slot</button>
+            <button class="btn btn-outline" type="button" id="cancelEdit" style="display:none">Cancel edit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><div class="ico">🅿️</div><h3>All slots</h3></div>
+        <div class="table-wrap scroll mt" id="slotTable"><div class="loader"></div></div>
+      </div>
+    </div>
+
+    <div class="card mt">
+      <div class="result-head">
+        <h3>All bookings</h3>
+        <input id="search" class="search-input" placeholder="🔎 Search vehicle / user / slot" />
+      </div>
+      <div class="table-wrap" id="bookingTable"><div class="loader"></div></div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span class="brand"><span class="logo">P</span> SlotFinder</span>
+      <span>© 2026 · Free Slot Identification in Vehicle Booking Systems</span>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/anim.js"></script>
+</body>
+</html>

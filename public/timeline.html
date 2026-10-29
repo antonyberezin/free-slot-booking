@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day View - SlotFinder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="inner">
+  <nav id="nav"></nav>
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Day View</h1>
+        <p>24-hour timeline of every slot - white/green gaps are free windows</p>
+      </div>
+      <div class="field" style="margin:0">
+        <input type="date" id="day" />
+        <span class="error" id="dayError"></span>
+      </div>
+    </div>
+
+    <div class="card mt">
+      <div class="legend">
+        <span><i style="background:#f0fdf4;border:1px solid #cbd5e1"></i>Free</span>
+        <span><i style="background:#f87171"></i>Booked</span>
+        <span><i style="background:#2563eb"></i>Current time</span>
+      </div>
+      <div class="table-wrap"><div id="timeline" class="timeline"><div class="loader"></div></div></div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span class="brand"><span class="logo">P</span> SlotFinder</span>
+      <span>© 2026 · Free Slot Identification in Vehicle Booking Systems</span>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+    Auth.require();
+    renderNav('timeline.html');
+    const dayInput = document.getElementById('day');
+    const today = new Date();
+    dayInput.value = toLocalInput(today).slice(0, 10);
+
+    async function load() {
+      const box = document.getElementById('timeline');
+      const err = document.getElementById('dayError');
+      err.textContent = '';
+      if (!dayInput.value) { err.textContent = 'Select a date'; return; }
+
+      const [y, m, d] = dayInput.value.split('-').map(Number);
+      const dayStart = new Date(y, m - 1, d);
+      box.innerHTML = '<div class="loader"></div>';
+      try {
+        const data = await api('/slots/day?date=' + encodeURIComponent(dayStart.toISOString()));
+        const DAY = 24 * 3600000;
+        const pct = (t) => Math.min(100, Math.max(0, ((new Date(t) - dayStart) / DAY) * 100));
+        const nowPct = (Date.now() - dayStart) / DAY * 100;
+        const nowLine = nowPct >= 0 && nowPct <= 100 ? `<div class="tl-now" style="left:${nowPct}%"></div>` : '';
+
+        if (!data.slots.length) { box.innerHTML = '<p class="empty">No active slots.</p>'; return; }
+
+        const hours = Array.from({ length: 24 }, (_, h) => `<span>${h}</span>`).join('');
+        box.innerHTML = `<div class="tl-hours"><div></div><div>${hours}</div></div>` +
+          data.slots.map((s) => `
+            <div class="tl-row">
+              <div class="tl-label">${escapeHtml(s.slotNumber)}<small>${fmt.icon(s.vehicleType)} ${fmt.type(s.vehicleType)}</small></div>
+              <div class="tl-track">
+                ${nowLine}
+                ${s.bookings.map((b) => {
+                  const l = pct(b.startTime), w = pct(b.endTime) - l;
+                  return `<div class="tl-block" style="left:${l}%;width:${w}%" title="${fmt.time(b.startTime)} - ${fmt.time(b.endTime)}">${fmt.time(b.startTime)}-${fmt.time(b.endTime)}</div>`;
+                }).join('')}
+              </div>
+            </div>`).join('');
+      } catch (e) {
+        box.innerHTML = `<p class="empty">${escapeHtml(e.message)}</p>`;
+      }
+    }
+    dayInput.addEventListener('change', load);
+    load();
+  </script>
+  <script src="js/anim.js"></script>
+</body>
+</html>

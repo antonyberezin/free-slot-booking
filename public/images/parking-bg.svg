@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <linearGradient id="asph" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1f2937"/><stop offset="1" stop-color="#111827"/>
+  </linearGradient>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0"/></filter>
+  <radialGradient id="glow"><stop offset="0" stop-color="#22c55e" stop-opacity=".45"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></radialGradient>
+  <g id="car">
+    <rect x="-36" y="-68" width="72" height="136" rx="20" style="fill:var(--c)"/>
+    <rect x="-36" y="-68" width="72" height="136" rx="20" fill="url(#shade)"/>
+    <path d="M-27 -34 Q0 -48 27 -34 L24 -12 Q0 -18 -24 -12 Z" fill="#0f172a" opacity=".85"/>
+    <path d="M-24 32 Q0 38 24 32 L27 48 Q0 58 -27 48 Z" fill="#0f172a" opacity=".8"/>
+    <rect x="-22" y="-10" width="44" height="40" rx="6" fill="#000" opacity=".12"/>
+    <rect x="-42" y="-30" width="8" height="12" rx="3" style="fill:var(--c)"/>
+    <rect x="34" y="-30" width="8" height="12" rx="3" style="fill:var(--c)"/>
+    <rect x="-30" y="-66" width="14" height="6" rx="3" fill="#fef9c3"/>
+    <rect x="16" y="-66" width="14" height="6" rx="3" fill="#fef9c3"/>
+    <rect x="-30" y="60" width="12" height="5" rx="2" fill="#dc2626"/>
+    <rect x="18" y="60" width="12" height="5" rx="2" fill="#dc2626"/>
+  </g>
+  <linearGradient id="shade" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".25"/><stop offset=".5" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#asph)"/>
+<rect width="1600" height="900" filter="url(#grain)"/>
+<rect x="30" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="148" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="266" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="384" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="502" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="620" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="738" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="856" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="974" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1092" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1210" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1328" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1446" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1564" y="40" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="30" y="40" width="1540" height="6" fill="#f8fafc" opacity=".55"/>
+<g transform="translate(92 168) rotate(180)" style="--c:#ef4444"><use href="#car"/></g>
+<text x="92" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-01</text>
+<g transform="translate(210 168) rotate(180)" style="--c:#e2e8f0"><use href="#car"/></g>
+<text x="210" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-02</text>
+<circle cx="328" cy="160" r="70" fill="url(#glow)"/>
+<rect x="284" y="85" width="88" height="150" rx="10" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+<text x="328" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#4ade80" opacity=".9">P</text>
+<text x="328" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-03</text>
+<g transform="translate(446 168) rotate(180)" style="--c:#64748b"><use href="#car"/></g>
+<text x="446" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-04</text>
+<g transform="translate(564 168) rotate(180)" style="--c:#f8fafc"><use href="#car"/></g>
+<text x="564" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-05</text>
+<g transform="translate(682 168) rotate(180)" style="--c:#14b8a6"><use href="#car"/></g>
+<text x="682" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-06</text>
+<circle cx="800" cy="160" r="70" fill="url(#glow)"/>
+<rect x="756" y="85" width="88" height="150" rx="10" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+<text x="800" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#4ade80" opacity=".9">P</text>
+<text x="800" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-07</text>
+<g transform="translate(918 168) rotate(180)" style="--c:#0ea5e9"><use href="#car"/></g>
+<text x="918" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-08</text>
+<g transform="translate(1036 168) rotate(180)" style="--c:#3b82f6"><use href="#car"/></g>
+<text x="1036" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-09</text>
+<circle cx="1154" cy="160" r="70" fill="url(#glow)"/>
+<rect x="1110" y="85" width="88" height="150" rx="10" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+<text x="1154" y="174" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#4ade80" opacity=".9">P</text>
+<text x="1154" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-10</text>
+<g transform="translate(1272 168) rotate(180)" style="--c:#1e293b"><use href="#car"/></g>
+<text x="1272" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-11</text>
+<g transform="translate(1390 168) rotate(180)" style="--c:#a855f7"><use href="#car"/></g>
+<text x="1390" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-12</text>
+<g transform="translate(1508 168) rotate(180)" style="--c:#f59e0b"><use href="#car"/></g>
+<text x="1508" y="74" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">A-13</text>
+<rect x="30" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="148" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="266" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="384" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="502" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="620" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="738" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="856" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="974" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1092" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1210" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1328" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1446" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="1564" y="620" width="6" height="240" fill="#f8fafc" opacity=".55"/>
+<rect x="30" y="854" width="1540" height="6" fill="#f8fafc" opacity=".55"/>
+<g transform="translate(92 732) rotate(0)" style="--c:#f59e0b"><use href="#car"/></g>
+<text x="92" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-01</text>
+<circle cx="210" cy="740" r="70" fill="url(#glow)"/>
+<rect x="166" y="665" width="88" height="150" rx="10" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+<text x="210" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#4ade80" opacity=".9">P</text>
+<text x="210" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-02</text>
+<g transform="translate(328 732) rotate(0)" style="--c:#ef4444"><use href="#car"/></g>
+<text x="328" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-03</text>
+<g transform="translate(446 732) rotate(0)" style="--c:#e2e8f0"><use href="#car"/></g>
+<text x="446" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-04</text>
+<circle cx="564" cy="740" r="70" fill="url(#glow)"/>
+<rect x="520" y="665" width="88" height="150" rx="10" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+<text x="564" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#4ade80" opacity=".9">P</text>
+<text x="564" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-05</text>
+<g transform="translate(682 732) rotate(0)" style="--c:#64748b"><use href="#car"/></g>
+<text x="682" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-06</text>
+<g transform="translate(800 732) rotate(0)" style="--c:#f8fafc"><use href="#car"/></g>
+<text x="800" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-07</text>
+<g transform="translate(918 732) rotate(0)" style="--c:#14b8a6"><use href="#car"/></g>
+<text x="918" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-08</text>
+<circle cx="1036" cy="740" r="70" fill="url(#glow)"/>
+<rect x="992" y="665" width="88" height="150" rx="10" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+<text x="1036" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#4ade80" opacity=".9">P</text>
+<text x="1036" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-09</text>
+<g transform="translate(1154 732) rotate(0)" style="--c:#0ea5e9"><use href="#car"/></g>
+<text x="1154" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-10</text>
+<g transform="translate(1272 732) rotate(0)" style="--c:#3b82f6"><use href="#car"/></g>
+<text x="1272" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-11</text>
+<circle cx="1390" cy="740" r="70" fill="url(#glow)"/>
+<rect x="1346" y="665" width="88" height="150" rx="10" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+<text x="1390" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#4ade80" opacity=".9">P</text>
+<text x="1390" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-12</text>
+<g transform="translate(1508 732) rotate(0)" style="--c:#1e293b"><use href="#car"/></g>
+<text x="1508" y="838" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" fill="#f8fafc" opacity=".45">B-13</text>
+<g opacity=".6"><rect x="30" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="120" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="210" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="300" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="390" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="480" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="570" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="660" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="750" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="840" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="930" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="1020" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="1110" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="1200" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="1290" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="1380" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="1470" y="447" width="50" height="6" rx="3" fill="#facc15"/><rect x="1560" y="447" width="50" height="6" rx="3" fill="#facc15"/></g>
+<path d="M260 395 h70 v-16 l34 26 -34 26 v-16 h-70 z" fill="#f8fafc" opacity=".35"/>
+<path d="M364 505 h-70 v-16 l-34 26 34 26 v-16 h70 z" fill="#f8fafc" opacity=".35"/>
+<path d="M820 395 h70 v-16 l34 26 -34 26 v-16 h-70 z" fill="#f8fafc" opacity=".35"/>
+<path d="M924 505 h-70 v-16 l-34 26 34 26 v-16 h70 z" fill="#f8fafc" opacity=".35"/>
+<path d="M1380 395 h70 v-16 l34 26 -34 26 v-16 h-70 z" fill="#f8fafc" opacity=".35"/>
+<path d="M1484 505 h-70 v-16 l-34 26 34 26 v-16 h70 z" fill="#f8fafc" opacity=".35"/>
+<g transform="translate(640 400) rotate(90)" style="--c:#22c55e"><use href="#car"/></g>
+</svg>

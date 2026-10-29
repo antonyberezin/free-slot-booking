@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SlotFinder - Free Slot Identification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav id="nav"></nav>
+
+  <main>
+    <!-- Hero with parking-lot background -->
+    <section class="hero">
+      <!-- Cars driving along the lanes of the background image -->
+      <div class="hero-car right" aria-hidden="true">
+        <svg viewBox="0 0 136 72"><rect x="2" y="2" width="132" height="68" rx="20" fill="#22c55e"/>
+          <path d="M84 10 Q100 36 84 62 L66 58 Q74 36 66 14 Z" fill="#0f172a" opacity=".85"/>
+          <path d="M30 12 Q22 36 30 60 L42 58 Q36 36 42 14 Z" fill="#0f172a" opacity=".8"/>
+          <rect x="126" y="8" width="7" height="14" rx="3" fill="#fef9c3"/><rect x="126" y="50" width="7" height="14" rx="3" fill="#fef9c3"/></svg>
+      </div>
+      <div class="hero-car left" aria-hidden="true">
+        <svg viewBox="0 0 136 72"><rect x="2" y="2" width="132" height="68" rx="20" fill="#3b82f6"/>
+          <path d="M84 10 Q100 36 84 62 L66 58 Q74 36 66 14 Z" fill="#0f172a" opacity=".85"/>
+          <path d="M30 12 Q22 36 30 60 L42 58 Q36 36 42 14 Z" fill="#0f172a" opacity=".8"/>
+          <rect x="126" y="8" width="7" height="14" rx="3" fill="#fef9c3"/><rect x="126" y="50" width="7" height="14" rx="3" fill="#fef9c3"/></svg>
+      </div>
+      <div class="container">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> Real-time free slot detection</span>
+          <h1>Find a <span class="hl">free parking slot</span><br />before you arrive.</h1>
+          <p class="lead">SlotFinder checks every slot against existing bookings and instantly shows which ones are
+            free for your vehicle and time. No circling, no double booking.</p>
+          <div class="actions" id="heroActions">
+            <a href="register.html" class="btn btn-green btn-lg">Get Started Free</a>
+            <a href="login.html" class="btn btn-ghost btn-lg">Login</a>
+          </div>
+          <div class="hero-stats">
+            <div><b>4</b><span>Vehicle types</span></div>
+            <div><b>0</b><span>Double bookings</span></div>
+            <div><b>24/7</b><span>Availability check</span></div>
+          </div>
+        </div>
+
+        <div class="glass">
+          <div class="preview-head">
+            <div>
+              <h3>Level 0 · Car Parking</h3>
+              <small>Today, 10:00 → 12:00</small>
+            </div>
+            <span class="badge badge-green">Live</span>
+          </div>
+          <div class="mini-map">
+            <span>A-01</span><span class="f">A-02</span><span>A-03</span><span class="blink">A-04</span>
+            <span class="f">A-05</span><span>A-06</span><span>A-07</span><span class="f">A-08</span>
+            <span>A-09</span><span class="blink">A-10</span><span class="f">A-11</span><span>A-12</span>
+          </div>
+          <div class="preview-foot">
+            <span>Free slots found</span>
+            <b>4 of 12 available</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">Features</span>
+          <h2>Everything for smart slot booking</h2>
+          <p>From instant free-slot search to a full admin panel, all backed by MongoDB.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card feature"><div class="ico g">🔍</div><h3>Free Slot Identification</h3>
+            <p>Time-overlap detection checks every booking so only truly free slots are listed, with estimated cost.</p></div>
+          <div class="card feature"><div class="ico">🚦</div><h3>Live Slot Map</h3>
+            <p>Colour-coded parking map shows free, occupied and inactive slots, refreshed automatically.</p></div>
+          <div class="card feature"><div class="ico a">⏭️</div><h3>Next Free Suggestion</h3>
+            <p>Parking full? The system calculates the earliest time a slot opens up for your duration.</p></div>
+          <div class="card feature"><div class="ico r">🛡️</div><h3>No Double Booking</h3>
+            <p>Slot and vehicle conflicts are re-checked on the server at the exact moment of booking.</p></div>
+          <div class="card feature"><div class="ico">📅</div><h3>24-Hour Day View</h3>
+            <p>A timeline for every slot visualises booked and free windows across the whole day.</p></div>
+          <div class="card feature"><div class="ico g">⚙️</div><h3>Admin Dashboard</h3>
+            <p>Add, edit or deactivate slots, search all bookings and track revenue statistics.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">How it works</span>
+          <h2>Park in four simple steps</h2>
+          <p>Booking a slot takes less than a minute.</p>
+        </div>
+        <div class="grid grid-4 steps">
+          <div class="card"><h3>Register</h3><p>Create your account with validated details.</p></div>
+          <div class="card"><h3>Search</h3><p>Pick your vehicle type and the time you need.</p></div>
+          <div class="card"><h3>Choose</h3><p>Select any of the free slots shown with price.</p></div>
+          <div class="card"><h3>Book</h3><p>Enter your vehicle number and confirm.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <span class="tag">Vehicles</span>
+          <h2>Dedicated slots for every vehicle</h2>
+          <p>Each slot type is matched to the right vehicle category.</p>
+        </div>
+        <div class="grid grid-4">
+          <div class="card vehicle"><div class="emoji">🚗</div><h3>Car</h3><p>Standard bays</p></div>
+          <div class="card vehicle"><div class="emoji">🏍️</div><h3>Bike</h3><p>Two-wheeler zone</p></div>
+          <div class="card vehicle"><div class="emoji">⚡</div><h3>EV</h3><p>With charging points</p></div>
+          <div class="card vehicle"><div class="emoji">🚚</div><h3>Truck</h3><p>Large vehicle bays</p></div>
+        </div>
+
+        <div class="cta mt" style="margin-top:64px">
+          <h2>Stop searching. Start parking.</h2>
+          <p>Create a free account and book your first slot in under a minute.</p>
+          <a href="register.html" class="btn btn-green btn-lg" id="ctaBtn">Create Free Account</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span class="brand"><span class="logo">P</span> SlotFinder</span>
+      <span>© 2026 · Free Slot Identification in Vehicle Booking Systems</span>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+    renderNav('index.html');
+    if (Auth.user) {
+      document.getElementById('heroActions').innerHTML =
+        '<a href="dashboard.html" class="btn btn-green btn-lg">Find a Free Slot</a>' +
+        '<a href="bookings.html" class="btn btn-ghost btn-lg">My Bookings</a>';
+      const cta = document.getElementById('ctaBtn');
+      cta.href = 'dashboard.html';
+      cta.textContent = 'Find a Free Slot';
+    }
+  </script>
+  <script src="js/anim.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - SlotFinder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="auth">
+  <nav id="nav"></nav>
+  <main class="auth-wrap">
+    <div class="auth-split">
+    <div class="auth-side">
+      <div>
+        <h2>Your parking spot is waiting.</h2>
+        <p>Log in to see which slots are free right now and book one in seconds.</p>
+        <ul>
+          <li>Instant free-slot search</li>
+          <li>Live colour-coded slot map</li>
+          <li>Next-free time suggestions</li>
+          <li>No double bookings, ever</li>
+        </ul>
+      </div>
+      <p>🅿️ SlotFinder</p>
+    </div>
+    <div class="card auth-card">
+      <h1>Welcome back</h1>
+      <p class="sub">Login to find and book free slots</p>
+      <div class="alert alert-error" id="formAlert"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="error"></span>
+        </div>
+        <div class="field">
+          <label for="password">Password <span class="req">*</span></label>
+          <div class="pw-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password" />
+            <button type="button" class="pw-toggle" id="pwToggle">Show</button>
+          </div>
+          <span class="error"></span>
+        </div>
+        <button class="btn btn-block" type="submit" id="submitBtn">Login</button>
+      </form>
+      <p class="switch-link">New here? <a href="register.html">Create an account</a></p>
+      <div class="demo"><b>Admin demo:</b> admin@slotfinder.com / Admin@123 (after running <code>npm run seed</code>)</div>
+    </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span class="brand"><span class="logo">P</span> SlotFinder</span>
+      <span>© 2026 · Free Slot Identification in Vehicle Booking Systems</span>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/validation.js"></script>
+  <script>
+    renderNav('login.html');
+    if (Auth.user) location.href = 'dashboard.html';
+
+    const form = document.getElementById('loginForm');
+    const alertBox = document.getElementById('formAlert');
+    const validateAll = bindValidation(form, {
+      email: Rules.email,
+      password: (v) => Rules.required(v, 'Password'),
+    });
+
+    document.getElementById('pwToggle').onclick = (e) => {
+      form.password.type = form.password.type === 'password' ? 'text' : 'password';
+      e.target.textContent = form.password.type === 'password' ? 'Show' : 'Hide';
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      alertBox.classList.remove('show');
+      if (!validateAll()) return;
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Logging in...';
+      try {
+        const data = await api('/auth/login', {
+          method: 'POST',
+          body: { email: form.email.value.trim(), password: form.password.value },
+        });
+        Auth.save(data.token, data.user);
+        location.href = data.user.role === 'admin' ? 'admin.html' : 'dashboard.html';
+      } catch (err) {
+        showServerErrors(form, err.errors);
+        alertBox.textContent = err.message;
+        alertBox.classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Login';
+      }
+    });
+  </script>
+  <script src="js/anim.js"></script>
+</body>
+</html>

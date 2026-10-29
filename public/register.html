@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - SlotFinder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="auth">
+  <nav id="nav"></nav>
+  <main class="auth-wrap">
+    <div class="auth-split">
+    <div class="auth-side">
+      <div>
+        <h2>Park smarter, not harder.</h2>
+        <p>Create a free account and never waste time searching for a parking slot again.</p>
+        <ul>
+          <li>Cars, bikes, EVs and trucks</li>
+          <li>See the price before you book</li>
+          <li>Cancel any time to free the slot</li>
+          <li>Your data stored securely</li>
+        </ul>
+      </div>
+      <p>🅿️ SlotFinder</p>
+    </div>
+    <div class="card auth-card">
+      <h1>Create account</h1>
+      <p class="sub">Register to start booking slots</p>
+      <div class="alert alert-error" id="formAlert"></div>
+
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <label for="name">Full name <span class="req">*</span></label>
+          <input id="name" name="name" type="text" maxlength="50" placeholder="e.g. Anton Raj" autocomplete="name" />
+          <span class="error"></span>
+        </div>
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+          <span class="error"></span>
+        </div>
+        <div class="field">
+          <label for="phone">Mobile number <span class="req">*</span></label>
+          <input id="phone" name="phone" type="tel" maxlength="10" inputmode="numeric" placeholder="9876543210" />
+          <span class="error"></span>
+        </div>
+        <div class="field">
+          <label for="password">Password <span class="req">*</span></label>
+          <div class="pw-wrap">
+            <input id="password" name="password" type="password" placeholder="Min 8 characters" autocomplete="new-password" />
+            <button type="button" class="pw-toggle" data-for="password">Show</button>
+          </div>
+          <div class="strength"><span id="strengthBar"></span></div>
+          <span class="hint" id="strengthText">Use upper, lower, number & special character</span>
+          <span class="error"></span>
+        </div>
+        <div class="field">
+          <label for="confirmPassword">Confirm password <span class="req">*</span></label>
+          <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" />
+          <span class="error"></span>
+        </div>
+        <button class="btn btn-block" type="submit" id="submitBtn">Register</button>
+      </form>
+      <p class="switch-link">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span class="brand"><span class="logo">P</span> SlotFinder</span>
+      <span>© 2026 · Free Slot Identification in Vehicle Booking Systems</span>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/register.js"></script>
+  <script src="js/anim.js"></script>
+</body>
+</html>
