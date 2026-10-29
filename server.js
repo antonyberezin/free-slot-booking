@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 
 const app = express();
@@ -10,6 +11,17 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '10kb' }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Connect on first API request so serverless deployments (Vercel) work; open connections are reused
+app.use('/api', async (req, res, next) => {
+  if (mongoose.connection.readyState === 1) return next();
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 // API routes
 app.use('/api/auth', require('./routes/auth'));
@@ -56,6 +68,9 @@ if (require.main === module) {
       }
       process.exit(1);
     });
+  }).catch((err) => {
+    console.error('MongoDB connection failed:', err.message);
+    process.exit(1);
   });
 }
 

@@ -37,4 +37,7 @@ const slots = [
   console.log(`Slots added: ${added} (total ${await Slot.countDocuments()})`);
 
   await mongoose.disconnect();
-})();
+})().catch((err) => {
+  console.error('Seeding failed:', err.message);
+  process.exit(1);
+});
